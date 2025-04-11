@@ -27,8 +27,8 @@ public class Controlador {
     }
     
     public static ComidaViewModel  calcularComida(){
-        double totalCarnivoros = Persistencia.getTotalComida(TipoAlimentacion.CARNIVORO);
-        double totalHerbivoros = Persistencia.getTotalComida(TipoAlimentacion.HERBIVORO);
+           double totalCarnivoros = Persistencia.getTotalComida(TipoAlimentacion.CARNIVORO);
+           double totalHerbivoros = Persistencia.getTotalComida(TipoAlimentacion.HERBIVORO);
         return new ComidaViewModel(totalCarnivoros, totalHerbivoros);
     }
 }
