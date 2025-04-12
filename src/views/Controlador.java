@@ -36,7 +36,7 @@ public class Controlador {
         return new ComidaViewModel(totalCarnivoros, totalHerbivoros);
     }
     
-public static void botonGuardar(AnimalNuevo vista) {
+public static void botonGuardar(AgregarAnimal vista) {
 
     try {
 

@@ -6,6 +6,7 @@ package views;
 
 import data.Persistencia;
 import domain.*;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -239,6 +240,47 @@ public class AgregarAnimal extends javax.swing.JFrame {
                 new AgregarAnimal().setVisible(true);
             }
         });
+    }
+    
+    public JComboBox<Especie> getBoxEspecie() {
+        return boxEspecie;
+    }
+
+    public JButton getBtnSiguiente() {
+        return btnSiguiente;
+    }
+
+    public JComboBox<Sector> getBoxSector() {
+        return boxSector;
+    }
+
+    public JComboBox<Pais> getBoxPais() {
+        return boxPais;
+    }
+
+    public JTextField getFieldEdad() {
+        return fieldEdad;
+    }
+
+    public JTextField getFieldPeso() {
+        return fieldPeso;
+    }
+    
+    
+    public Pais getPaisSeleccionada() {
+        return (Pais) boxPais.getSelectedItem();
+    }
+    
+    public Especie getEspecieSeleccionada() {
+        return (Especie) boxEspecie.getSelectedItem();
+    }
+    
+      public Sector getSectorSeleccionada() {
+        return (Sector) boxSector.getSelectedItem();
+    }
+    
+    public void cerrar() {
+   this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
