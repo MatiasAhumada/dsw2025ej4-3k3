@@ -62,9 +62,7 @@ public static void botonGuardar(AnimalNuevo vista) {
         double peso = Double.parseDouble(vista.getFieldPeso().getText());
 
         if (especieSeleccionada == null || sectorSeleccionado == null || paisSeleccionado == null) {
-
             throw new Exception("Por favor seleccioná una especie, un sector y un país.");
-
         }
 
         String nombre = especieSeleccionada.getNombre().toLowerCase();
