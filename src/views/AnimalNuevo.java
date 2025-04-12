@@ -22,12 +22,7 @@ public class AnimalNuevo extends javax.swing.JFrame {
     
     public AnimalNuevo() {
         initComponents();
-       // boxAlimentacion.setModel(new DefaultComboBoxModel<>(
-   //Arrays.stream(TipoAlimentacion.values())
-     //    .map(Enum::name)
-         //.toArray(String[]::new)
-       //         ));
-      // controlador = new Controlador(this);
+       
       
        
        for (Especie especie : Persistencia.especies){
