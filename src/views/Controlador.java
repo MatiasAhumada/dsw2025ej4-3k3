@@ -40,8 +40,8 @@ public class Controlador {
     }
     
     public static ComidaViewModel  calcularComida(){
-        double totalCarnivoros = Persistencia.getTotalComida(TipoAlimentacion.CARNIVORO);
-        double totalHerbivoros = Persistencia.getTotalComida(TipoAlimentacion.HERBIVORO);
+           double totalCarnivoros = Persistencia.getTotalComida(TipoAlimentacion.CARNIVORO);
+           double totalHerbivoros = Persistencia.getTotalComida(TipoAlimentacion.HERBIVORO);
         return new ComidaViewModel(totalCarnivoros, totalHerbivoros);
     }
     
@@ -62,9 +62,7 @@ public static void botonGuardar(AnimalNuevo vista) {
         double peso = Double.parseDouble(vista.getFieldPeso().getText());
 
         if (especieSeleccionada == null || sectorSeleccionado == null || paisSeleccionado == null) {
-
             throw new Exception("Por favor seleccioná una especie, un sector y un país.");
-
         }
 
         String nombre = especieSeleccionada.getNombre().toLowerCase();
