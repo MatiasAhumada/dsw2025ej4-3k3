@@ -1,5 +1,7 @@
 
+
 package domain;
+
 
 public class Pais {
     private final String nombre;
@@ -19,5 +21,13 @@ public class Pais {
     public String getCodigoIso() {
         return codigoIso;
     }
+
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+    
 
 }
