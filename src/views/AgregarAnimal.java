@@ -5,8 +5,7 @@
 package views;
 
 import data.Persistencia;
-import domain.Carnivoro;
-import domain.Herbivoro;
+import domain.*;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
@@ -21,32 +20,21 @@ public class AgregarAnimal extends javax.swing.JFrame {
      */
     public AgregarAnimal() {
         initComponents();
+        
+        for (Especie especie : Persistencia.especies){
+           boxEspecie.addItem(especie);
+       }
+       
+       for (Sector sector : Persistencia.sectores){
+           boxSector.addItem(sector);
+       }
+       
+       for (Pais pais : Persistencia.getPaises()){
+           boxPais.addItem(pais);
+       }
+       
     }
-
-    public JComboBox<String> getjComboPais() {
-        return jComboPais;
-    }
-
-    public JComboBox<String> getjComboSector() {
-        return jComboSector;
-    }
-
-    public JComboBox<String> getjComboTipo() {
-        return jComboTipo;
-    }
-
-    public JTextField getjTextEdad() {
-        return jTextEdad;
-    }
-
-    public JTextField getjTextEspecie() {
-        return jTextEspecie;
-    }
-
-    public JTextField getjTextPeso() {
-        return jTextPeso;
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,181 +45,166 @@ public class AgregarAnimal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jAgregar = new javax.swing.JButton();
-        jSalir = new javax.swing.JButton();
-        jEspecie = new javax.swing.JLabel();
-        jTextEspecie = new javax.swing.JTextField();
-        jComboTipo = new javax.swing.JComboBox<>();
-        jTipo = new javax.swing.JLabel();
-        jEdad = new javax.swing.JLabel();
-        jTextEdad = new javax.swing.JTextField();
-        jPeso = new javax.swing.JLabel();
-        jTextPeso = new javax.swing.JTextField();
-        jPais = new javax.swing.JLabel();
-        jComboPais = new javax.swing.JComboBox<>();
-        jSector = new javax.swing.JLabel();
-        jComboSector = new javax.swing.JComboBox<>();
+        fieldPeso = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        boxSector = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        boxPais = new javax.swing.JComboBox<>();
+        btnSiguiente = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        boxEspecie = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        fieldEdad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Agregar Animales");
+        jLabel1.setText("Alta de Animal");
 
-        jAgregar.setText("Agregar");
-        jAgregar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setText("Sector:");
+
+        jLabel2.setText("Especie:");
+
+        boxSector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAgregarActionPerformed(evt);
+                boxSectorActionPerformed(evt);
             }
         });
 
-        jSalir.setText("Salir");
-        jSalir.addActionListener(new java.awt.event.ActionListener() {
+        jLabel4.setText("Pais de origen:");
+
+        boxPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSalirActionPerformed(evt);
+                boxPaisActionPerformed(evt);
             }
         });
 
-        jEspecie.setText("Especie");
-
-        jTextEspecie.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente.setText("Guardar");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextEspecieActionPerformed(evt);
+                btnSiguienteActionPerformed(evt);
             }
         });
 
-        jComboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Herviboro", "Carniboro" }));
-
-        jTipo.setText("Tipo");
-
-        jEdad.setText("Edad");
-
-        jTextEdad.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextEdadActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        jPeso.setText("Peso");
-
-        jTextPeso.addActionListener(new java.awt.event.ActionListener() {
+        boxEspecie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextPesoActionPerformed(evt);
+                boxEspecieActionPerformed(evt);
             }
         });
 
-        jPais.setText("Pais");
+        jLabel6.setText("Edad:");
 
-        jComboPais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Madagascar", "India", "Australia", "Africa" }));
-
-        jSector.setText("Sector");
-
-        jComboSector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sector 1", "Sector 2", "Sector 3", "Sector 4" }));
+        jLabel7.setText("Peso:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jAgregar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSalir)
-                .addGap(36, 36, 36))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPeso)
-                            .addComponent(jEdad))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(boxPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fieldEdad)
+                            .addComponent(fieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jSector)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boxSector, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPais)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
-                                .addComponent(jComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTipo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99))))
-            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSiguiente)))))
+                .addGap(67, 67, 67))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jEspecie)
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(155, 155, 155))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(144, 144, 144))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTipo)
-                    .addComponent(jComboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(boxEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(fieldEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jEspecie)
-                    .addComponent(jTextEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel4)
+                    .addComponent(boxPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(fieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jEdad)
-                    .addComponent(jTextEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel3)
+                    .addComponent(boxSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPeso)
-                    .addComponent(jTextPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPais)
-                    .addComponent(jComboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSector)
-                    .addComponent(jComboSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jAgregar)
-                    .addComponent(jSalir))
+                    .addComponent(btnSiguiente)
+                    .addComponent(jButton2))
                 .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarActionPerformed
-        Controlador.agregarAnimal(this);
-    }//GEN-LAST:event_jAgregarActionPerformed
+    private void boxSectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxSectorActionPerformed
 
-    private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_jSalirActionPerformed
+    }//GEN-LAST:event_boxSectorActionPerformed
 
-    private void jTextEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextEspecieActionPerformed
+    private void boxPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxPaisActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextEspecieActionPerformed
+    }//GEN-LAST:event_boxPaisActionPerformed
 
-    private void jTextEdadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextEdadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextEdadActionPerformed
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
 
-    private void jTextPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextPesoActionPerformed
+        Controlador.botonGuardar(this);
+
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();    // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void boxEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxEspecieActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextPesoActionPerformed
+    }//GEN-LAST:event_boxEspecieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,21 +242,20 @@ public class AgregarAnimal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jAgregar;
-    private javax.swing.JComboBox<String> jComboPais;
-    private javax.swing.JComboBox<String> jComboSector;
-    private javax.swing.JComboBox<String> jComboTipo;
-    private javax.swing.JLabel jEdad;
-    private javax.swing.JLabel jEspecie;
+    private javax.swing.JComboBox<Especie> boxEspecie;
+    private javax.swing.JComboBox<Pais> boxPais;
+    private javax.swing.JComboBox<Sector> boxSector;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JTextField fieldEdad;
+    private javax.swing.JTextField fieldPeso;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jPais;
-    private javax.swing.JLabel jPeso;
-    private javax.swing.JButton jSalir;
-    private javax.swing.JLabel jSector;
-    private javax.swing.JTextField jTextEdad;
-    private javax.swing.JTextField jTextEspecie;
-    private javax.swing.JTextField jTextPeso;
-    private javax.swing.JLabel jTipo;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
 
