@@ -8,7 +8,7 @@ public abstract class Mamifero {
     protected Especie especie;
     protected Sector sector;
     protected TipoAlimentacion tipoAlimentacion;
-
+    protected Pais pais;
 
     protected Mamifero(TipoAlimentacion tipoAlimentacion,
                        int edad, double peso, Especie especie, Sector sector) throws IllegalArgumentException, InvalidPropertiesFormatException {
@@ -20,6 +20,7 @@ public abstract class Mamifero {
         this.peso = peso;
         this.especie = especie;
         this.sector = sector;
+        this.pais = pais;
         sector.agregarAnimal(this);
     }
 
