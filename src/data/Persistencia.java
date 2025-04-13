@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 
 public class Persistencia {
-    public static ArrayList<Mamifero> animales = new ArrayList<>();
+    private static ArrayList<Mamifero> animales = new ArrayList<>();
     public static ArrayList<Sector> sectores = new ArrayList<>();
     public static ArrayList<Especie> especies = new ArrayList<>();
     public static ArrayList<Pais> paises = new ArrayList<>();
