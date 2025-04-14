@@ -72,7 +72,6 @@ public static void botonGuardar(AgregarAnimal vista) {
         int sector = sectorSeleccionado.getNumero();
 
 
-
         if ((nombre.equals("león") || nombre.equals("tigre")) && (sector != 2 && sector != 4)) {
 
             throw new Exception("Especie no coincide con sector (carnívoros deben ir a sector 2 o 4).");
@@ -89,7 +88,6 @@ public static void botonGuardar(AgregarAnimal vista) {
 
         guardarAnimal(nombre ,paisSeleccionado, edad, peso, sectorSeleccionado);
 
-        
 
 
         JOptionPane.showMessageDialog(null, "Animal guardado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
@@ -113,11 +111,12 @@ public static void guardarAnimal(String especieNombre, Pais paisNombre, int edad
 
           
            double valorFijo = 100; 
-
            Mamifero animal = new Herbivoro(edad, peso, especie, sector, valorFijo, paisNombre);
            Persistencia.agregarAnimal(animal);
        }
-   } catch (InvalidPropertiesFormatException | IllegalArgumentException ex) {      
+   } catch (InvalidPropertiesFormatException | IllegalArgumentException ex) {
+      
+
        JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
    }
  }

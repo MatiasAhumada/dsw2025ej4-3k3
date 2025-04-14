@@ -23,7 +23,7 @@ public class ListarAnimalesView extends javax.swing.JFrame {
     
     private void listarAnimales(){
         ArrayList<AnimalViewModel> animales = Controlador.getAnimales();
-        System.out.println("animales: " + animales.size());
+       
         animalesGrid.setModel(new DefaultTableModel(new Object[][] {}, 
             new String[] { "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Por. Peso" }));
         
