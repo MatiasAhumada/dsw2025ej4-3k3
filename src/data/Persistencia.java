@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.InvalidPropertiesFormatException;
 
 public class Persistencia {
+
     private static ArrayList<Mamifero> animales = new ArrayList<>();
     public static ArrayList<Sector> sectores = new ArrayList<>();
     public static ArrayList<Especie> especies = new ArrayList<>();
@@ -19,16 +20,19 @@ public class Persistencia {
     }
 
     private static void inicializarSectores() {
-        Empleado raul = new Empleado("Raul A", "20111222", "Tucumán" );
-        Empleado maria = new Empleado("Maria B", "30111222", "Tucumán" );
+        Empleado raul = new Empleado("Raul A", "20111222", "Tucumán");
+        Empleado maria = new Empleado("Maria B", "30111222", "Tucumán");
         sectores.add(new Sector(1, -26.250724, -65.522827, 10, TipoAlimentacion.HERBIVORO, raul));
         sectores.add(new Sector(2, -26.252359, -65.521511, 10, TipoAlimentacion.CARNIVORO, maria));
         sectores.add(new Sector(3, -26.254661, -65.522726, 10, TipoAlimentacion.HERBIVORO, maria));
         sectores.add(new Sector(4, -26.257250, -65.523514, 10, TipoAlimentacion.CARNIVORO, raul));
     }
-    
-    private static void inicializarAnimales() throws InvalidPropertiesFormatException {
 
+    private static void inicializarAnimales() throws InvalidPropertiesFormatException {
+        animales.add(new Carnivoro(5,250,especies.get(0), sectores.get(1), paises.get(0)));
+        animales.add(new Carnivoro(2,180,especies.get(2), sectores.get(3), paises.get(2)));
+        animales.add(new Herbivoro(3, 1020,especies.get(1), sectores.get(0), 170, paises.get(4)));
+        animales.add(new Herbivoro(8, 3800,especies.get(3), sectores.get(2), 320, paises.get(1)));
     }
     
     private static void inicializarPaises(){
@@ -37,12 +41,12 @@ public class Persistencia {
         paises.add(new Pais("India","356"));
         paises.add(new Pais("Brasil","076"));
         paises.add(new Pais("Australia","036"));
-
     }
 
-    public static void inicializar() throws InvalidPropertiesFormatException{
+    public static void inicializar() throws InvalidPropertiesFormatException {
         inicializarEspecies();
         inicializarSectores();
+        inicializarPaises();
         inicializarAnimales();
         inicializarPaises();
     }
@@ -65,32 +69,39 @@ public class Persistencia {
 
     public static double getTotalComida(TipoAlimentacion tipoAlimentacion) {
         double total = 0;
-        for(Mamifero animal : animales){
+        for (Mamifero animal : animales) {
             total += animal.TieneAlimentacion(tipoAlimentacion) ? animal.calcularCantidadDeComida() : 0;
+
         }
         return total;
     }
     
+
     public static Especie getEspeciePorNombre(String nombre) {
         
         for (Especie e : especies) {
             if (e.getNombre().equalsIgnoreCase(nombre)) {
             return e;
+
        }
    }
    throw new IllegalArgumentException("Especie no encontrada.");
 }
 
+
     public static Pais getPaisPorNombre(String nombre) {
         for (Pais p : paises) {
             if (p.getNombre().equalsIgnoreCase(nombre)) {
             return p;
+
        }
    }
    throw new IllegalArgumentException("País no encontrado.");
 }
+
         
 public static void agregarAnimal(Mamifero animal) {
    animales.add(animal);
 }
+
 }

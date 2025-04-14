@@ -10,6 +10,7 @@ public abstract class Mamifero {
     protected TipoAlimentacion tipoAlimentacion;
     protected Pais pais;
 
+
     protected Mamifero(TipoAlimentacion tipoAlimentacion,
                        int edad, double peso, Especie especie, Sector sector, Pais pais) throws IllegalArgumentException, InvalidPropertiesFormatException {
         if(especie == null) throw new IllegalArgumentException();

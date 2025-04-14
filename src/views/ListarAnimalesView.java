@@ -20,8 +20,10 @@ public class ListarAnimalesView extends javax.swing.JFrame {
         initComponents();
         listarAnimales();
     }
+    
     private void listarAnimales(){
         ArrayList<AnimalViewModel> animales = Controlador.getAnimales();
+        System.out.println("animales: " + animales.size());
         animalesGrid.setModel(new DefaultTableModel(new Object[][] {}, 
             new String[] { "Especie", "Edad", "Peso", "Sector", "Comida Fija", "Por. Peso" }));
         
@@ -64,7 +66,7 @@ public class ListarAnimalesView extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Zoológico - Listar Animales");
         setPreferredSize(new java.awt.Dimension(640, 480));
         setSize(new java.awt.Dimension(640, 480));
