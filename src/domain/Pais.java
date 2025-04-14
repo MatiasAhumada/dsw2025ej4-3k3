@@ -1,7 +1,4 @@
-
-
 package domain;
-
 
 public class Pais {
     private final String nombre;
@@ -28,6 +25,5 @@ public class Pais {
         return nombre;
     }
 
-    
-
 }
+

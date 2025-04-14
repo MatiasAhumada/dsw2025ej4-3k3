@@ -12,7 +12,6 @@ public class Persistencia {
     public static ArrayList<Especie> especies = new ArrayList<>();
     public static ArrayList<Pais> paises = new ArrayList<>();
 
-
     private static void inicializarEspecies() {
         especies.add(new Especie("León", TipoAlimentacion.CARNIVORO, 0.2));
         especies.add(new Especie("Jirafa", TipoAlimentacion.HERBIVORO, 0));
@@ -30,12 +29,10 @@ public class Persistencia {
     }
 
     private static void inicializarAnimales() throws InvalidPropertiesFormatException {
-
         animales.add(new Carnivoro(5,250,especies.get(0), sectores.get(1), paises.get(0)));
         animales.add(new Carnivoro(2,180,especies.get(2), sectores.get(3), paises.get(2)));
         animales.add(new Herbivoro(3, 1020,especies.get(1), sectores.get(0), 170, paises.get(4)));
         animales.add(new Herbivoro(8, 3800,especies.get(3), sectores.get(2), 320, paises.get(1)));
-
     }
     
     private static void inicializarPaises(){
@@ -44,7 +41,6 @@ public class Persistencia {
         paises.add(new Pais("India","356"));
         paises.add(new Pais("Brasil","076"));
         paises.add(new Pais("Australia","036"));
-
     }
 
     public static void inicializar() throws InvalidPropertiesFormatException {
@@ -52,6 +48,7 @@ public class Persistencia {
         inicializarSectores();
         inicializarPaises();
         inicializarAnimales();
+        inicializarPaises();
     }
 
     public static ArrayList<Mamifero> getAnimales() {
@@ -79,27 +76,30 @@ public class Persistencia {
         return total;
     }
     
-    public static void agragarAnimal(Mamifero nuevo){
-        animales.add(nuevo);
-    }
-    
+
     public static Especie getEspeciePorNombre(String nombre) {
-   for (Especie e : especies) {
-       if (e.getNombre().equalsIgnoreCase(nombre)) {
-           return e;
+        
+        for (Especie e : especies) {
+            if (e.getNombre().equalsIgnoreCase(nombre)) {
+            return e;
+
        }
    }
    throw new IllegalArgumentException("Especie no encontrada.");
 }
-public static Pais getPaisPorNombre(String nombre) {
-   for (Pais p : paises) {
-       if (p.getNombre().equalsIgnoreCase(nombre)) {
-           return p;
+
+
+    public static Pais getPaisPorNombre(String nombre) {
+        for (Pais p : paises) {
+            if (p.getNombre().equalsIgnoreCase(nombre)) {
+            return p;
+
        }
    }
    throw new IllegalArgumentException("País no encontrado.");
 }
 
+        
 public static void agregarAnimal(Mamifero animal) {
    animales.add(animal);
 }

@@ -30,7 +30,9 @@ public class Controlador {
     }
     public static ArrayList<Pais> getPaises(){
         return Persistencia.getPaises();
-    }    
+ } 
+    
+
     public static ArrayList<AnimalViewModel> getAnimales(){
         ArrayList<AnimalViewModel> animales = new ArrayList<>();
         for(Mamifero animal : Persistencia.getAnimales()){
@@ -45,9 +47,8 @@ public class Controlador {
         return new ComidaViewModel(totalCarnivoros, totalHerbivoros);
     }
     
-   
-    
-public static void botonGuardar(AnimalNuevo vista) {
+
+public static void botonGuardar(AgregarAnimal vista) {
 
     try {
 
@@ -70,7 +71,7 @@ public static void botonGuardar(AnimalNuevo vista) {
         
         int sector = sectorSeleccionado.getNumero();
 
-        // Validaciones con throw
+
 
         if ((nombre.equals("león") || nombre.equals("tigre")) && (sector != 2 && sector != 4)) {
 
@@ -84,11 +85,12 @@ public static void botonGuardar(AnimalNuevo vista) {
 
         }
 
-        // Guardar el animal
+
 
         guardarAnimal(nombre ,paisSeleccionado, edad, peso, sectorSeleccionado);
 
-        // Mostrar mensaje de éxito
+        
+
 
         JOptionPane.showMessageDialog(null, "Animal guardado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
@@ -102,22 +104,22 @@ public static void botonGuardar(AnimalNuevo vista) {
 
 public static void guardarAnimal(String especieNombre, Pais paisNombre, int edad, double peso, Sector sector) {
    try {
-       Especie especie = Persistencia.getEspeciePorNombre(especieNombre);
-       
+       Especie especie = Persistencia.getEspeciePorNombre(especieNombre);       
        TipoAlimentacion tipo = especie.getTipoAlimentacion();
        if (tipo == TipoAlimentacion.CARNIVORO) {
            Mamifero animal = new Carnivoro(edad, peso, especie, sector, paisNombre);
            Persistencia.agregarAnimal(animal);
        } else if (tipo == TipoAlimentacion.HERBIVORO) {
-           // Suponiendo que el valor fijo para herbívoros está en la clase Herbivoro (o lo podés setear desde especie también)
-           double valorFijo = 100; // Podés definir un valor estándar o usar alguna lógica para obtenerlo
+
+          
+           double valorFijo = 100; 
+
            Mamifero animal = new Herbivoro(edad, peso, especie, sector, valorFijo, paisNombre);
            Persistencia.agregarAnimal(animal);
        }
-   } catch (InvalidPropertiesFormatException | IllegalArgumentException ex) {
-       // Mostrar mensaje en pantalla
+   } catch (InvalidPropertiesFormatException | IllegalArgumentException ex) {      
        JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
    }
-}
+ }
     
 }
